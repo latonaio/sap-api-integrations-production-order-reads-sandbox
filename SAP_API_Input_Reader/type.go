@@ -1,4 +1,4 @@
-package file_reader
+package sap_api_input_reader
 
 type EC_MC struct {
 	ConnectionKey string      `json:"connection_key"`
@@ -8,17 +8,17 @@ type EC_MC struct {
 	ManufacturingOrder    struct {
 		ManufacturingOrder             string      `json:"document_no"`
 		DeliverTo                      string      `json:"deliver_to"`
-		MfgOrderItemPlannedTotalQty    float64     `json:"quantity"`
-		MfgOrderItemActualDeviationQty float64     `json:"picked_quantity"`
-		Price                          float64     `json:"price"`
+		MfgOrderItemPlannedTotalQty    string      `json:"quantity"`
+		MfgOrderItemActualDeviationQty string      `json:"picked_quantity"`
+		Price                          string      `json:"price"`
 	    Batch                          string      `json:"batch"`
 	} `json:"document"`
 	ManufacturingOrder struct {
 		ManufacturingOrder             string      `json:"document_no"`
 		StatusCode                     string      `json:"status"`
 		DeliverTo                      string      `json:"deliver_to"`
-		MfgOrderItemPlannedTotalQty    float64     `json:"quantity"`
-		MfgOrderItemActualDeviationQty float64     `json:"completed_quantity"`
+		MfgOrderItemPlannedTotalQty    string      `json:"quantity"`
+		MfgOrderItemActualDeviationQty string      `json:"completed_quantity"`
 	    PlannedStartDate               string      `json:"planned_start_date"`
 	    MfgOrderItemPlndDeliveryDate   string      `json:"planned_validated_date"`
 	    ActualStartDate                string      `json:"actual_start_date"`
@@ -26,11 +26,11 @@ type EC_MC struct {
 	    Batch                          string      `json:"batch"`
 		BillOfOperations struct {
 			OrderIntBillOfOperationsItem string      `json:"work_no"`
-			OpPlannedTotalQuantity       float64     `json:"quantity"`
-			OpTotalConfirmedYieldQty     float64     `json:"completed_quantity"`
-			ErroredQuantity              float64     `json:"errored_quantity"`
+			OpPlannedTotalQuantity       string      `json:"quantity"`
+			OpTotalConfirmedYieldQty     string      `json:"completed_quantity"`
+			ErroredQuantity              string      `json:"errored_quantity"`
 			Component                    string      `json:"component"`
-			MaterialCompOriginalQuantity float64     `json:"planned_component_quantity"`
+			MaterialCompOriginalQuantity string      `json:"planned_component_quantity"`
 			OpErlstSchedldExecStrtDte    string      `json:"planned_start_date"`
 			OpErlstSchedldExecStrtTme    string      `json:"planned_start_time"`
 			OpErlstSchedldExecEndDte     string      `json:"planned_validated_date"`
@@ -44,12 +44,12 @@ type EC_MC struct {
 	APISchema                      string      `json:"api_schema"`
 	MaterialCode                   string      `json:"material_code"`
 	ProductionPlant                string      `json:"plant/supplier"`
-	Stock                          float64     `json:"stock"`
+	Stock                          string      `json:"stock"`
 	ManufacturingOrderType         string      `json:"document_type"`
 	ManufacturingOrder             string      `json:"document_no"`
 	MfgOrderItemPlndDeliveryDate   string      `json:"planned_date"`
 	MfgOrderItemActualDeliveryDate string      `json:"validated_date"`
-	Deleted                        string      `json:"deleted"`
+	Deleted                        bool        `json:"deleted"`
 }
 
 type SDC struct {
@@ -62,13 +62,13 @@ type SDC struct {
 		ManufacturingOrderType         string  `json:"ManufacturingOrderType"`
 		Material                       string  `json:"Material"`
 		ProductionPlant                string  `json:"ProductionPlant"`
-		MfgOrderItemPlannedTotalQty    float64 `json:"MfgOrderItemPlannedTotalQty"`
-		MfgOrderItemPlannedScrapQty    float64 `json:"MfgOrderItemPlannedScrapQty"`
-		MfgOrderItemGoodsReceiptQty    float64 `json:"MfgOrderItemGoodsReceiptQty"`
-		MfgOrderItemActualDeviationQty float64 `json:"MfgOrderItemActualDeviationQty"`
+		MfgOrderItemPlannedTotalQty    string  `json:"MfgOrderItemPlannedTotalQty"`
+		MfgOrderItemPlannedScrapQty    string  `json:"MfgOrderItemPlannedScrapQty"`
+		MfgOrderItemGoodsReceiptQty    string  `json:"MfgOrderItemGoodsReceiptQty"`
+		MfgOrderItemActualDeviationQty string  `json:"MfgOrderItemActualDeviationQty"`
 		MfgOrderItemPlndDeliveryDate   string  `json:"MfgOrderItemPlndDeliveryDate"`
 		MfgOrderItemActualDeliveryDate string  `json:"MfgOrderItemActualDeliveryDate"`
-		IsCompletelyDelivered          string  `json:"IsCompletelyDelivered"`
+		IsCompletelyDelivered          bool    `json:"IsCompletelyDelivered"`
 		MRPArea                        string  `json:"MRPArea"`
 		StorageLocation                string  `json:"StorageLocation"`
 		Batch                          string  `json:"Batch"`
@@ -84,19 +84,19 @@ type SDC struct {
 			Component                     string      `json:"Component"`
 			Plant                         string      `json:"Plant"`
 			BaseUnit                      string      `json:"BaseUnit"`
-			RequiredQuantity              float64     `json:"RequiredQuantity"`
-			MaterialCompOriginalQuantity  float64     `json:"MaterialCompOriginalQuantity"`
-			Reservation                   int         `json:"Reservation"`
-			ReservationItem               int         `json:"ReservationItem"`
-			QuantityIsFixed               string      `json:"QuantityIsFixed"`
-			ComponentScrapInPercent       float64     `json:"ComponentScrapInPercent"`
-			WithdrawnQuantity             float64     `json:"WithdrawnQuantity"`
-			ConfirmedAvailableQuantity    float64     `json:"ConfirmedAvailableQuantity"`
-			WithdrawnQuantityAmount       float64     `json:"WithdrawnQuantityAmount"`
+			RequiredQuantity              string      `json:"RequiredQuantity"`
+			MaterialCompOriginalQuantity  string      `json:"MaterialCompOriginalQuantity"`
+			Reservation                   string      `json:"Reservation"`
+			ReservationItem               string      `json:"ReservationItem"`
+			QuantityIsFixed               bool        `json:"QuantityIsFixed"`
+			ComponentScrapInPercent       string      `json:"ComponentScrapInPercent"`
+			WithdrawnQuantity             string      `json:"WithdrawnQuantity"`
+			ConfirmedAvailableQuantity    string      `json:"ConfirmedAvailableQuantity"`
+			WithdrawnQuantityAmount       string      `json:"WithdrawnQuantityAmount"`
 			OrderInternalBillOfOperations string      `json:"OrderInternalBillOfOperations"`
 			MatlCompRequirementDate       string      `json:"MatlCompRequirementDate"`
-			ReservationIsFinallyIssued    string      `json:"ReservationIsFinallyIssued"`
-			MatlCompIsMarkedForBackflush  string      `json:"MatlCompIsMarkedForBackflush"`
+			ReservationIsFinallyIssued    bool        `json:"ReservationIsFinallyIssued"`
+			MatlCompIsMarkedForBackflush  bool        `json:"MatlCompIsMarkedForBackflush"`
 			StorageLocation               string      `json:"StorageLocation"`
 			GoodsMovementType             string      `json:"GoodsMovementType"`
 		} `json:"BillofMaterial"`
@@ -104,16 +104,16 @@ type SDC struct {
 			OrderInternalBillOfOperations string `json:"OrderInternalBillOfOperations"`
 			OrderIntBillOfOperationsItem  struct {
 				OrderIntBillOfOperationsItem  string  `json:"OrderIntBillOfOperationsItem"`
-				ManufacturingOrderSequence    int     `json:"ManufacturingOrderSequence"`
+				ManufacturingOrderSequence    string  `json:"ManufacturingOrderSequence"`
 				MfgOrderOperationText         string  `json:"MfgOrderOperationText"`
-				OperationIsReleased           string  `json:"OperationIsReleased"`
-				OperationIsConfirmed          string  `json:"OperationIsConfirmed"`
-				OperationIsPartiallyConfirmed string  `json:"OperationIsPartiallyConfirmed"`
-				OperationIsDeleted            string  `json:"OperationIsDeleted"`
-				OperationIsTechlyCompleted    string  `json:"OperationIsTechlyCompleted"`
-				OperationIsClosed             string  `json:"OperationIsClosed"`
+				OperationIsReleased           bool    `json:"OperationIsReleased"`
+				OperationIsConfirmed          bool    `json:"OperationIsConfirmed"`
+				OperationIsPartiallyConfirmed bool    `json:"OperationIsPartiallyConfirmed"`
+				OperationIsDeleted            bool    `json:"OperationIsDeleted"`
+				OperationIsTechlyCompleted    bool    `json:"OperationIsTechlyCompleted"`
+				OperationIsClosed             bool    `json:"OperationIsClosed"`
 				ProductionPlant               string  `json:"ProductionPlant"`
-				WorkCenterInternalID          int     `json:"WorkCenterInternalID"`
+				WorkCenterInternalID          string  `json:"WorkCenterInternalID"`
 				OpErlstSchedldExecStrtDte     string  `json:"OpErlstSchedldExecStrtDte"`
 				OpErlstSchedldExecStrtTme     string  `json:"OpErlstSchedldExecStrtTme"`
 				OpErlstSchedldExecEndDte      string  `json:"OpErlstSchedldExecEndDte"`
@@ -122,15 +122,15 @@ type SDC struct {
 				OpActualExecutionStartTime    string  `json:"OpActualExecutionStartTime"`
 				OpActualExecutionEndDate      string  `json:"OpActualExecutionEndDate"`
 				OpActualExecutionEndTime      string  `json:"OpActualExecutionEndTime"`
-				OpActualExecutionDays         int     `json:"OpActualExecutionDays"`
+				OpActualExecutionDays         string  `json:"OpActualExecutionDays"`
 				OperationUnit                 string  `json:"OperationUnit"`
-				OpPlannedTotalQuantity        float64 `json:"OpPlannedTotalQuantity"`
-				OpTotalConfirmedYieldQty      float64 `json:"OpTotalConfirmedYieldQty"`
+				OpPlannedTotalQuantity        string  `json:"OpPlannedTotalQuantity"`
+				OpTotalConfirmedYieldQty      string  `json:"OpTotalConfirmedYieldQty"`
 				LastChangeDateTime            string  `json:"LastChangeDateTime"`
 			} `json:"OrderIntBillOfOperationsItem"`
 		} `json:"BillofOperations"`
 	} `json:"ProductionOrder"`
 	APISchema          string `json:"api_schema"`
 	ManufacturingOrder string `json:"production_order"`
-	Deleted            string `json:"deleted"`
+	Deleted            bool   `json:"deleted"`
 }
