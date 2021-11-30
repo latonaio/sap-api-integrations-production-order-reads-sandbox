@@ -15,7 +15,7 @@
 	"Batch": "110002340",
 	"ProductionUnit": "PC",
 	"StatusCode": "REL PRC MACM SETC",
-	"IsUserStatus": "",
+	"IsUserStatus": false,
 	"StatusShortName": "",
 	"StatusName": "",
 	"BillOfMaterialItemNumber": "0010",
