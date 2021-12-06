@@ -16,3 +16,25 @@ sap-api-integrations-production-order-reads は、主にエッジコンピュー
 ## クラウド環境での利用
 
 sap-api-integrations-production-order-reads は、外部システムがクラウド環境である場合にSAPと統合するときにおいても、利用可能なように設計されています。  
+
+## 本レポジトリ が 対応する API サービス
+sap-api-integrations-production-order-reads が対応する APIサービス は、次のものです。
+
+* APIサービス概要説明 URL: https://api.sap.com/api/OP_API_PRODUCTION_ORDER_2_SRV_0001/overview  
+* APIサービス名(=baseURL): API_PRODUCTION_ORDER_2_SRV
+
+## 本レポジトリ に 含まれる API名
+sap-api-integrations-production-order-reads には、次の API をコールするためのリソースが含まれています。  
+
+* A_ProductionOrder_2（製造指図 - ヘッダ）
+* A_ProductionOrderStatus_2（製造指図 - ステータス）
+* A_ProductionOrderItem_2(ManufacturingOrder='{ManufacturingOrder}',ManufacturingOrderItem='{ManufacturingOrderItem}')（製造指図 - 明細）
+* A_ProductionOrderOperation_2（製造指図 - 作業手順）
+
+## API への 値入力条件 の 初期値
+sap-api-integrations-production-order-reads において、API への値入力条件の初期値は、入力ファイルレイアウトの種別毎に、次の通りとなっています。  
+
+### SDC レイアウト
+
+* inoutSDC.ManufacturingOrder（製造指図）
+* inoutSDC.ManufacturingOrder.StatusCode（ステータス）
