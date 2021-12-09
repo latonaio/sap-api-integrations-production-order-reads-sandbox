@@ -26,10 +26,11 @@ sap-api-integrations-production-order-reads が対応する APIサービス は�
 ## 本レポジトリ に 含まれる API名
 sap-api-integrations-production-order-reads には、次の API をコールするためのリソースが含まれています。  
 
-* A_ProductionOrder_2（製造指図 - ヘッダ）
-* A_ProductionOrderStatus_2（製造指図 - ステータス）
-* A_ProductionOrderItem_2(ManufacturingOrder='{ManufacturingOrder}',ManufacturingOrderItem='{ManufacturingOrderItem}')（製造指図 - 明細）
-* A_ProductionOrderOperation_2（製造指図 - 作業手順）
+* A_ProductionOrder_2（製造指図 - 一般）※製造指図の詳細データを取得するために、ToProductionOrderComponent、ToProductionOrderItem、ToProductionOrderOperation、ToProductionOrderStatus、と合わせて利用されます。
+* ToProductionOrderComponent（製造指図 - 構成品目）
+* ToProductionOrderItem（製造指図 - 明細）
+* ToProductionOrderOperation（製造指図 - 作業手順）
+* ToProductionOrderStatus（製造指図 - ステータス）
 
 ## API への 値入力条件 の 初期値
 sap-api-integrations-production-order-reads において、API への値入力条件の初期値は、入力ファイルレイアウトの種別毎に、次の通りとなっています。  
@@ -37,4 +38,3 @@ sap-api-integrations-production-order-reads において、API への値入力�
 ### SDC レイアウト
 
 * inoutSDC.ManufacturingOrder（製造指図）
-* inoutSDC.ManufacturingOrder.StatusCode（ステータス）
