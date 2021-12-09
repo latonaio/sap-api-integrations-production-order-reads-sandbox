@@ -1,0 +1,7 @@
+{
+	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-production-order-reads/SAP_API_Caller/caller.go#L60",
+	"function": "sap-api-integrations-production-order-reads/SAP_API_Caller.(*SAPAPICaller).General",
+	"level": "INFO",
+	"message": "&{ManufacturingOrder:1000000 ManufacturingOrderItem:1 ManufacturingOrderCategory:10 ManufacturingOrderType:YBM1 IsCompletelyDelivered:false Material:MZ-FG-R10 ProductionPlant:1710 Plant:1710 MRPArea:1710 QuantityDistributionKey: MaterialGoodsReceiptDuration:0 StorageLocation:171A Batch: InventoryUsabilityCode: GoodsRecipientName: UnloadingPointName: MfgOrderItemPlndDeliveryDate: MfgOrderItemActualDeliveryDate: ProductionUnit:PC MfgOrderItemPlannedTotalQty:500 MfgOrderItemPlannedScrapQty:0 MfgOrderItemGoodsReceiptQty:0 MfgOrderItemActualDeviationQty:0}",
+	"time": "2021-12-09T20:19:12.807544+09:00"
+}

@@ -1,0 +1,7 @@
+{
+	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-production-order-reads/SAP_API_Caller/caller.go#L74",
+	"function": "sap-api-integrations-production-order-reads/SAP_API_Caller.(*SAPAPICaller).General",
+	"level": "INFO",
+	"message": "&{ManufacturingOrder:1000000 StatusCode:I0028 IsUserStatus:false StatusShortName:SETC StatusName:Settlement rule created}",
+	"time": "2021-12-09T20:19:16.813697+09:00"
+}

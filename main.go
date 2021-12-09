@@ -17,6 +17,5 @@ func main() {
 
     caller.AsyncGetProductionOrder(
         inoutSDC.ManufacturingOrder.ManufacturingOrder,
-        inoutSDC.ManufacturingOrder.StatusCode,
     )
 }

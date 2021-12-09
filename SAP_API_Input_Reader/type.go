@@ -5,7 +5,7 @@ type EC_MC struct {
 	Result        bool        `json:"result"`
 	RedisKey      string      `json:"redis_key"`
 	Filepath      string      `json:"filepath"`
-	ManufacturingOrder    struct {
+	ProuctionOrder struct {
 		ManufacturingOrder             string      `json:"document_no"`
 		DeliverTo                      string      `json:"deliver_to"`
 		MfgOrderItemPlannedTotalQty    string      `json:"quantity"`
@@ -46,7 +46,7 @@ type EC_MC struct {
 	ProductionPlant                string      `json:"plant/supplier"`
 	Stock                          string      `json:"stock"`
 	ManufacturingOrderType         string      `json:"document_type"`
-	ManufacturingOrder             string      `json:"document_no"`
+	ManufacturingOrderNo           string      `json:"document_no"`
 	MfgOrderItemPlndDeliveryDate   string      `json:"planned_date"`
 	MfgOrderItemActualDeliveryDate string      `json:"validated_date"`
 	Deleted                        bool        `json:"deleted"`
@@ -106,12 +106,12 @@ type SDC struct {
 				OrderIntBillOfOperationsItem  string  `json:"OrderIntBillOfOperationsItem"`
 				ManufacturingOrderSequence    string  `json:"ManufacturingOrderSequence"`
 				MfgOrderOperationText         string  `json:"MfgOrderOperationText"`
-				OperationIsReleased           bool    `json:"OperationIsReleased"`
-				OperationIsConfirmed          bool    `json:"OperationIsConfirmed"`
-				OperationIsPartiallyConfirmed bool    `json:"OperationIsPartiallyConfirmed"`
-				OperationIsDeleted            bool    `json:"OperationIsDeleted"`
-				OperationIsTechlyCompleted    bool    `json:"OperationIsTechlyCompleted"`
-				OperationIsClosed             bool    `json:"OperationIsClosed"`
+				OperationIsReleased           string  `json:"OperationIsReleased"`
+				OperationIsConfirmed          string  `json:"OperationIsConfirmed"`
+				OperationIsPartiallyConfirmed string  `json:"OperationIsPartiallyConfirmed"`
+				OperationIsDeleted            string  `json:"OperationIsDeleted"`
+				OperationIsTechlyCompleted    string  `json:"OperationIsTechlyCompleted"`
+				OperationIsClosed             string  `json:"OperationIsClosed"`
 				ProductionPlant               string  `json:"ProductionPlant"`
 				WorkCenterInternalID          string  `json:"WorkCenterInternalID"`
 				OpErlstSchedldExecStrtDte     string  `json:"OpErlstSchedldExecStrtDte"`

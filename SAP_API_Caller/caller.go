@@ -4,10 +4,12 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	sap_api_output_formatter "sap-api-integrations-production-order-reads/SAP_API_Output_Formatter"
 	"strings"
 	"sync"
 
 	"github.com/latonaio/golang-logging-library/logger"
+	"golang.org/x/xerrors"
 )
 
 type SAPAPICaller struct {
@@ -24,200 +26,154 @@ func NewSAPAPICaller(baseUrl string, l *logger.Logger) *SAPAPICaller {
 	}
 }
 
-
-func (c *SAPAPICaller) AsyncGetProductionOrder(ManufacturingOrder, StatusCode string) {
+func (c *SAPAPICaller) AsyncGetProductionOrder(manufacturingOrder string) {
 	wg := &sync.WaitGroup{}
 
-	wg.Add(5)
-	go func() {
-		c.Header(ManufacturingOrder)
-		wg.Done()
-	}()
-	go func() {
-		c.Status(ManufacturingOrder, StatusCode)
-		wg.Done()
-	}()
-	go func() {
-		c.Items(ManufacturingOrder)
-		wg.Done()
-	}()
-	go func() {
-		c.Components(ManufacturingOrder)
-		wg.Done()
-	}()
-	go func() {
-		c.Operations(ManufacturingOrder)
+	wg.Add(1)
+	func() {
+		c.General(manufacturingOrder)
 		wg.Done()
 	}()
 	wg.Wait()
 }
 
-func (c *SAPAPICaller) Header(ManufacturingOrder string) {
-	res, err := c.callProductionOrderSrvAPIRequirementHeader("A_ProductionOrder_2", ManufacturingOrder)
+func (c *SAPAPICaller) General(manufacturingOrder string) {
+	generalData, err := c.callProductionOrderSrvAPIRequirementGeneral("A_ProductionOrder_2", manufacturingOrder)
 	if err != nil {
 		c.log.Error(err)
 		return
 	}
+	c.log.Info(generalData)
 
-	c.log.Info(res)
-
-}
-
-func (c *SAPAPICaller) Status(ManufacturingOrder, StatusCode string) {
-	res, err := c.callProductionOrderSrvAPIRequirementStatus("A_ProductionOrderStatus_2", ManufacturingOrder, StatusCode)
+	componentData, err := c.callToProductionOrderComponent(generalData[0].ToProductionOrderComponent)
 	if err != nil {
 		c.log.Error(err)
 		return
 	}
+	c.log.Info(componentData)
 
-	c.log.Info(res)
-
-}
-
-func (c *SAPAPICaller) Items(ManufacturingOrder string) {
-	res, err := c.callProductionOrderSrvAPIRequirementItems("A_ProductionOrderItem_2(ManufacturingOrder='{ManufacturingOrder}',ManufacturingOrderItem='{ManufacturingOrderItem}')", ManufacturingOrder)
+	itemData, err := c.callToProductionOrderItem(generalData[0].ToProductionOrderItem)
 	if err != nil {
 		c.log.Error(err)
 		return
 	}
+	c.log.Info(itemData)
 
-	c.log.Info(res)
-
-}
-
-func (c *SAPAPICaller) Components(ManufacturingOrder string) {
-	res, err := c.callProductionOrderSrvAPIRequirementComponents("A_ProductionOrderComponent_2", ManufacturingOrder)
+	operationData, err := c.callToProductionOrderOperation(generalData[0].ToProductionOrderOperation)
 	if err != nil {
 		c.log.Error(err)
 		return
 	}
+	c.log.Info(operationData)
 
-	c.log.Info(res)
-
-}
-
-func (c *SAPAPICaller) Operations(ManufacturingOrder string) {
-	res, err := c.callProductionOrderSrvAPIRequirementOperations("A_ProductionOrderOperation_2", ManufacturingOrder)
+	statusData, err := c.callToProductionOrderStatus(generalData[0].ToProductionOrderStatus)
 	if err != nil {
 		c.log.Error(err)
 		return
 	}
-
-	c.log.Info(res)
-
+	c.log.Info(statusData)
 }
 
-func (c *SAPAPICaller) callProductionOrderSrvAPIRequirementHeader(api, ManufacturingOrder string) ([]byte, error) {
+func (c *SAPAPICaller) callProductionOrderSrvAPIRequirementGeneral(api, manufacturingOrder string) ([]sap_api_output_formatter.General, error) {
 	url := strings.Join([]string{c.baseURL, "API_PRODUCTION_ORDER_2_SRV", api}, "/")
 	req, _ := http.NewRequest("GET", url, nil)
 
-	params := req.URL.Query()
-	// params.Add("$select", "ManufacturingOrder")
-	params.Add("$filter", fmt.Sprintf("ManufacturingOrder eq '%s'", ManufacturingOrder))
-	req.URL.RawQuery = params.Encode()
+	c.setHeaderAPIKeyAccept(req)
+	c.getQueryWithGeneral(req, manufacturingOrder)
 
-	req.Header.Set("APIKey", c.apiKey)
-	req.Header.Set("Accept", "application/json")
-
-	client := new(http.Client)
-	resp, err := client.Do(req)
+	resp, err := new(http.Client).Do(req)
 	if err != nil {
-		return nil, err
+		return nil, xerrors.Errorf("API request error: %w", err)
 	}
 	defer resp.Body.Close()
 
 	byteArray, _ := ioutil.ReadAll(resp.Body)
-	return byteArray, nil
+	data, err := sap_api_output_formatter.ConvertToGeneral(byteArray, c.log)
+	if err != nil {
+		return nil, xerrors.Errorf("convert error: %w", err)
+	}
+	return data, nil
 }
 
-func (c *SAPAPICaller) callProductionOrderSrvAPIRequirementStatus(api, ManufacturingOrder, StatusCode string) ([]byte, error) {
-	url := strings.Join([]string{c.baseURL, "API_PRODUCTION_ORDER_2_SRV", api}, "/")
+func (c *SAPAPICaller) callToProductionOrderComponent(url string) (*sap_api_output_formatter.ToProductionOrderComponent, error) {
 	req, _ := http.NewRequest("GET", url, nil)
+	c.setHeaderAPIKeyAccept(req)
 
-	params := req.URL.Query()
-	// params.Add("$select", "ManufacturingOrder, StatusCode")
-	params.Add("$filter", fmt.Sprintf("ManufacturingOrder eq '%s' and StatusCode eq '%s'", ManufacturingOrder, StatusCode))
-	req.URL.RawQuery = params.Encode()
-
-	req.Header.Set("APIKey", c.apiKey)
-	req.Header.Set("Accept", "application/json")
-
-	client := new(http.Client)
-	resp, err := client.Do(req)
+	resp, err := new(http.Client).Do(req)
 	if err != nil {
-		return nil, err
+		return nil, xerrors.Errorf("API request error: %w", err)
 	}
 	defer resp.Body.Close()
 
 	byteArray, _ := ioutil.ReadAll(resp.Body)
-	return byteArray, nil
+	data, err := sap_api_output_formatter.ConvertToToProductionOrderComponent(byteArray, c.log)
+	if err != nil {
+		return nil, xerrors.Errorf("convert error: %w", err)
+	}
+	return data, nil
 }
 
-func (c *SAPAPICaller) callProductionOrderSrvAPIRequirementItems(api, ManufacturingOrder string) ([]byte, error) {
-	url := strings.Join([]string{c.baseURL, "API_PRODUCTION_ORDER_2_SRV", api}, "/")
+func (c *SAPAPICaller) callToProductionOrderItem(url string) (*sap_api_output_formatter.ToProductionOrderItem, error) {
 	req, _ := http.NewRequest("GET", url, nil)
+	c.setHeaderAPIKeyAccept(req)
 
-	params := req.URL.Query()
-	// params.Add("$select", "ManufacturingOrder")
-	params.Add("$filter", fmt.Sprintf("ManufacturingOrder eq '%s'", ManufacturingOrder))
-	req.URL.RawQuery = params.Encode()
-
-	req.Header.Set("APIKey", c.apiKey)
-	req.Header.Set("Accept", "application/json")
-
-	client := new(http.Client)
-	resp, err := client.Do(req)
+	resp, err := new(http.Client).Do(req)
 	if err != nil {
-		return nil, err
+		return nil, xerrors.Errorf("API request error: %w", err)
 	}
 	defer resp.Body.Close()
 
 	byteArray, _ := ioutil.ReadAll(resp.Body)
-	return byteArray, nil
+	data, err := sap_api_output_formatter.ConvertToToProductionOrderItem(byteArray, c.log)
+	if err != nil {
+		return nil, xerrors.Errorf("convert error: %w", err)
+	}
+	return data, nil
 }
 
-func (c *SAPAPICaller) callProductionOrderSrvAPIRequirementComponents(api, ManufacturingOrder string) ([]byte, error) {
-	url := strings.Join([]string{c.baseURL, "API_PRODUCTION_ORDER_2_SRV", api}, "/")
+func (c *SAPAPICaller) callToProductionOrderOperation(url string) (*sap_api_output_formatter.ToProductionOrderOperation, error) {
 	req, _ := http.NewRequest("GET", url, nil)
+	c.setHeaderAPIKeyAccept(req)
 
-	params := req.URL.Query()
-	// params.Add("$select", "ManufacturingOrder")
-	params.Add("$filter", fmt.Sprintf("ManufacturingOrder eq '%s'", ManufacturingOrder))
-	req.URL.RawQuery = params.Encode()
-
-	req.Header.Set("APIKey", c.apiKey)
-	req.Header.Set("Accept", "application/json")
-
-	client := new(http.Client)
-	resp, err := client.Do(req)
+	resp, err := new(http.Client).Do(req)
 	if err != nil {
-		return nil, err
+		return nil, xerrors.Errorf("API request error: %w", err)
 	}
 	defer resp.Body.Close()
 
 	byteArray, _ := ioutil.ReadAll(resp.Body)
-	return byteArray, nil
+	data, err := sap_api_output_formatter.ConvertToToProductionOrderOperation(byteArray, c.log)
+	if err != nil {
+		return nil, xerrors.Errorf("convert error: %w", err)
+	}
+	return data, nil
 }
 
-func (c *SAPAPICaller) callProductionOrderSrvAPIRequirementOperations(api, ManufacturingOrder string) ([]byte, error) {
-	url := strings.Join([]string{c.baseURL, "API_PRODUCTION_ORDER_2_SRV", api}, "/")
+func (c *SAPAPICaller) callToProductionOrderStatus(url string) (*sap_api_output_formatter.ToProductionOrderStatus, error) {
 	req, _ := http.NewRequest("GET", url, nil)
+	c.setHeaderAPIKeyAccept(req)
 
-	params := req.URL.Query()
-	// params.Add("$select", "ManufacturingOrder")
-	params.Add("$filter", fmt.Sprintf("ManufacturingOrder eq '%s'", ManufacturingOrder))
-	req.URL.RawQuery = params.Encode()
-
-	req.Header.Set("APIKey", c.apiKey)
-	req.Header.Set("Accept", "application/json")
-
-	client := new(http.Client)
-	resp, err := client.Do(req)
+	resp, err := new(http.Client).Do(req)
 	if err != nil {
-		return nil, err
+		return nil, xerrors.Errorf("API request error: %w", err)
 	}
 	defer resp.Body.Close()
 
 	byteArray, _ := ioutil.ReadAll(resp.Body)
-	return byteArray, nil
+	data, err := sap_api_output_formatter.ConvertToToProductionOrderStatus(byteArray, c.log)
+	if err != nil {
+		return nil, xerrors.Errorf("convert error: %w", err)
+	}
+	return data, nil
+}
+
+func (c *SAPAPICaller) setHeaderAPIKeyAccept(req *http.Request) {
+	req.Header.Set("APIKey", c.apiKey)
+	req.Header.Set("Accept", "application/json")
+}
+
+func (c *SAPAPICaller) getQueryWithGeneral(req *http.Request, manufacturingOrder string) {
+	params := req.URL.Query()
+	params.Add("$filter", fmt.Sprintf("ManufacturingOrder eq '%s'", manufacturingOrder))
+	req.URL.RawQuery = params.Encode()
 }
