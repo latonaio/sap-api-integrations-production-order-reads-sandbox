@@ -56,7 +56,7 @@ accepter において 下記の例のように、データの種別（＝APIの�
 	"deleted": false
 ```
   
-* 全データを取得する際ののsample.jsonの記載例(2)  
+* 全データを取得する際のsample.jsonの記載例(2)  
 
 全データを取得する場合、sample.json は以下のように記載します。  
 
