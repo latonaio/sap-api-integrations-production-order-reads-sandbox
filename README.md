@@ -38,3 +38,30 @@ sap-api-integrations-production-order-reads において、API への値入力�
 ### SDC レイアウト
 
 * inoutSDC.ManufacturingOrder（製造指図）
+
+## 指定されたデータ種別のコール
+
+accepter における データ種別 の指定に基づいて SAP_API_Caller 内の caller.go で API がコールされます。  
+caller.go の func() 毎 の 以下の箇所が、指定された API をコールするソースコードです。  
+
+```
+func (c *SAPAPICaller) AsyncGetProductionOrder(manufacturingOrder string, accepter []string) {
+	wg := &sync.WaitGroup{}
+	wg.Add(len(accepter))
+	for _, fn := range accepter {
+		switch fn {
+		case "General":
+			func() {
+				c.General(manufacturingOrder)
+				wg.Done()
+			}()
+		default:
+			wg.Done()
+		}
+	}
+
+	wg.Wait()
+}
+```
+
+
