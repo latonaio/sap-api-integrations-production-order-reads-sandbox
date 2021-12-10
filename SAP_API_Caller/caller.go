@@ -26,14 +26,21 @@ func NewSAPAPICaller(baseUrl string, l *logger.Logger) *SAPAPICaller {
 	}
 }
 
-func (c *SAPAPICaller) AsyncGetProductionOrder(manufacturingOrder string) {
+func (c *SAPAPICaller) AsyncGetProductionOrder(manufacturingOrder string, accepter []string) {
 	wg := &sync.WaitGroup{}
+	wg.Add(len(accepter))
+	for _, fn := range accepter {
+		switch fn {
+		case "General":
+			func() {
+				c.General(manufacturingOrder)
+				wg.Done()
+			}()
+		default:
+			wg.Done()
+		}
+	}
 
-	wg.Add(1)
-	func() {
-		c.General(manufacturingOrder)
-		wg.Done()
-	}()
 	wg.Wait()
 }
 

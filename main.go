@@ -15,7 +15,16 @@ func main() {
 		"https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/", l,
 	)
 
-    caller.AsyncGetProductionOrder(
-        inoutSDC.ManufacturingOrder.ManufacturingOrder,
-    )
+	accepter := inoutSDC.Accepter
+	if len(accepter) == 0 || accepter[0] == "All" {
+
+		accepter = []string{
+			"General",
+		}
+	}
+
+	caller.AsyncGetProductionOrder(
+		inoutSDC.ManufacturingOrder.ManufacturingOrder,
+		accepter,
+	)
 }
