@@ -94,4 +94,83 @@ func (c *SAPAPICaller) AsyncGetProductionOrder(manufacturingOrder string, accept
 }
 ```
 
+## Output  
+本マイクロサービスでは、[golang-logging-library](https://github.com/latonaio/golang-logging-library) により、以下のようなデータがJSON形式で出力されます。  
+以下の sample.json の例は、SAP 製造指図 の 一般データ が取得された結果の JSON の例です。  
+以下の項目のうち、"ManufacturingOrder" ～ "to_ProductionOrderStatus" は、/SAP_API_Output_Formatter/type.go 内 の Type Product {} による出力結果です。"cursor" ～ "time"は、golang-logging-library による 定型フォーマットの出力結果です。  
 
+```
+{
+	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-production-order-reads/SAP_API_Caller/caller.go#L46",
+	"function": "sap-api-integrations-production-order-reads/SAP_API_Caller.(*SAPAPICaller).General",
+	"level": "INFO",
+	"message": [
+		{
+			"ManufacturingOrder": "1000000",
+			"ManufacturingOrderCategory": "10",
+			"ManufacturingOrderType": "YBM1",
+			"OrderIsCreated": "",
+			"OrderIsReleased": "",
+			"OrderIsPrinted": "",
+			"OrderIsConfirmed": "",
+			"OrderIsPartiallyConfirmed": "",
+			"OrderIsDelivered": "",
+			"OrderIsDeleted": "",
+			"OrderIsPreCosted": "X",
+			"SettlementRuleIsCreated": "X",
+			"OrderIsPartiallyReleased": "",
+			"OrderIsLocked": "",
+			"OrderIsTechnicallyCompleted": "X",
+			"OrderIsClosed": "",
+			"OrderIsPartiallyDelivered": "",
+			"OrderIsMarkedForDeletion": "",
+			"OrderIsScheduled": "",
+			"OrderHasGeneratedOperations": "",
+			"MaterialAvailyIsNotChecked": "",
+			"MfgOrderCreationDate": "/Date(1470268800000)/",
+			"MfgOrderCreationTime": "PT12H26M00S",
+			"LastChangeDateTime": "20200723125718",
+			"Material": "MZ-FG-R10",
+			"StorageLocation": "171A",
+			"GoodsRecipientName": "",
+			"UnloadingPointName": "",
+			"MaterialGoodsReceiptDuration": "0",
+			"OrderInternalBillOfOperations": "1",
+			"ProductionPlant": "1710",
+			"Plant": "1710",
+			"MRPArea": "1710",
+			"MRPController": "MZ1",
+			"ProductionSupervisor": "",
+			"ProductionVersion": "0001",
+			"PlannedOrder": "",
+			"SalesOrder": "",
+			"SalesOrderItem": "0",
+			"BasicSchedulingType": "1",
+			"BusinessArea": "",
+			"CompanyCode": "1710",
+			"ProfitCenter": "Z_LOG_PC7",
+			"FunctionalArea": "YB20",
+			"MfgOrderPlannedStartDate": "/Date(1496707200000)/",
+			"MfgOrderPlannedStartTime": "PT00H00M00S",
+			"MfgOrderPlannedEndDate": "/Date(1496880000000)/",
+			"MfgOrderPlannedEndTime": "PT00H00M00S",
+			"MfgOrderScheduledStartDate": "/Date(1496707200000)/",
+			"MfgOrderScheduledStartTime": "PT07H00M00S",
+			"MfgOrderScheduledEndDate": "/Date(1496793600000)/",
+			"MfgOrderScheduledEndTime": "PT10H22M30S",
+			"MfgOrderActualReleaseDate": "/Date(1470614400000)/",
+			"ProductionUnit": "PC",
+			"TotalQuantity": "500",
+			"MfgOrderPlannedScrapQty": "0",
+			"MfgOrderConfirmedYieldQty": "0",
+			"WBSElementExternalID": "",
+			"OrderLongText": "",
+			"to_ProductionOrderComponent": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_PRODUCTION_ORDER_2_SRV/A_ProductionOrder_2('1000000')/to_ProductionOrderComponent",
+			"to_ProductionOrderItem": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_PRODUCTION_ORDER_2_SRV/A_ProductionOrder_2('1000000')/to_ProductionOrderItem",
+			"to_ProductionOrderOperation": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_PRODUCTION_ORDER_2_SRV/A_ProductionOrder_2('1000000')/to_ProductionOrderOperation",
+			"to_ProductionOrderStatus": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_PRODUCTION_ORDER_2_SRV/A_ProductionOrder_2('1000000')/to_ProductionOrderStatus"
+		}
+	],
+	"time": "2021-12-10T11:28:38.6947+09:00"
+}
+```
