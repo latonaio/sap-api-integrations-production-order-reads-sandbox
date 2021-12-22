@@ -1,6 +1,6 @@
 package sap_api_output_formatter
 
-type ManufacturingOrderReads struct {
+type ProductionOrderReads struct {
 	ConnectionKey      string `json:"connection_key"`
 	Result             bool   `json:"result"`
 	RedisKey           string `json:"redis_key"`
