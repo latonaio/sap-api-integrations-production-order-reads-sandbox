@@ -2,12 +2,42 @@
 	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-production-order-reads/SAP_API_Caller/caller.go#L81",
 	"function": "sap-api-integrations-production-order-reads/SAP_API_Caller.(*SAPAPICaller).General",
 	"level": "INFO",
-	"message": {
-		"ManufacturingOrder": "1000000",
-		"StatusCode": "I0028",
-		"IsUserStatus": false,
-		"StatusShortName": "SETC",
-		"StatusName": "Settlement rule created"
-	},
-	"time": "2021-12-28T15:38:58.614803+09:00"
+	"message": [
+		{
+			"ManufacturingOrder": "1000000",
+			"StatusCode": "I0028",
+			"IsUserStatus": false,
+			"StatusShortName": "SETC",
+			"StatusName": "Settlement rule created"
+		},
+		{
+			"ManufacturingOrder": "1000000",
+			"StatusCode": "I0016",
+			"IsUserStatus": false,
+			"StatusShortName": "PRC",
+			"StatusName": "Pre-costed"
+		},
+		{
+			"ManufacturingOrder": "1000000",
+			"StatusCode": "I0321",
+			"IsUserStatus": false,
+			"StatusShortName": "GMPS",
+			"StatusName": "Goods movement posted"
+		},
+		{
+			"ManufacturingOrder": "1000000",
+			"StatusCode": "I0045",
+			"IsUserStatus": false,
+			"StatusShortName": "TECO",
+			"StatusName": "Technically completed"
+		},
+		{
+			"ManufacturingOrder": "1000000",
+			"StatusCode": "I0004",
+			"IsUserStatus": false,
+			"StatusShortName": "MSPT",
+			"StatusName": "Material shortage"
+		}
+	],
+	"time": "2021-12-28T16:12:15.001517+09:00"
 }

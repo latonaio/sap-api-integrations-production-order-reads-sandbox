@@ -69,5 +69,5 @@
 			"to_ProductionOrderStatus": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_PRODUCTION_ORDER_2_SRV/A_ProductionOrder_2('1000000')/to_ProductionOrderStatus"
 		}
 	],
-	"time": "2021-12-28T15:38:56.786121+09:00"
+	"time": "2021-12-28T16:12:13.22188+09:00"
 }

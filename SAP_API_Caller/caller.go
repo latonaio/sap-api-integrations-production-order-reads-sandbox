@@ -102,7 +102,7 @@ func (c *SAPAPICaller) callProductionOrderSrvAPIRequirementGeneral(api, manufact
 	return data, nil
 }
 
-func (c *SAPAPICaller) callToProductionOrderComponent(url string) (*sap_api_output_formatter.ToProductionOrderComponent, error) {
+func (c *SAPAPICaller) callToProductionOrderComponent(url string) ([]sap_api_output_formatter.ToProductionOrderComponent, error) {
 	req, _ := http.NewRequest("GET", url, nil)
 	c.setHeaderAPIKeyAccept(req)
 
@@ -120,7 +120,7 @@ func (c *SAPAPICaller) callToProductionOrderComponent(url string) (*sap_api_outp
 	return data, nil
 }
 
-func (c *SAPAPICaller) callToProductionOrderItem(url string) (*sap_api_output_formatter.ToProductionOrderItem, error) {
+func (c *SAPAPICaller) callToProductionOrderItem(url string) ([]sap_api_output_formatter.ToProductionOrderItem, error) {
 	req, _ := http.NewRequest("GET", url, nil)
 	c.setHeaderAPIKeyAccept(req)
 
@@ -138,7 +138,7 @@ func (c *SAPAPICaller) callToProductionOrderItem(url string) (*sap_api_output_fo
 	return data, nil
 }
 
-func (c *SAPAPICaller) callToProductionOrderOperation(url string) (*sap_api_output_formatter.ToProductionOrderOperation, error) {
+func (c *SAPAPICaller) callToProductionOrderOperation(url string) ([]sap_api_output_formatter.ToProductionOrderOperation, error) {
 	req, _ := http.NewRequest("GET", url, nil)
 	c.setHeaderAPIKeyAccept(req)
 
@@ -156,7 +156,7 @@ func (c *SAPAPICaller) callToProductionOrderOperation(url string) (*sap_api_outp
 	return data, nil
 }
 
-func (c *SAPAPICaller) callToProductionOrderStatus(url string) (*sap_api_output_formatter.ToProductionOrderStatus, error) {
+func (c *SAPAPICaller) callToProductionOrderStatus(url string) ([]sap_api_output_formatter.ToProductionOrderStatus, error) {
 	req, _ := http.NewRequest("GET", url, nil)
 	c.setHeaderAPIKeyAccept(req)
 
