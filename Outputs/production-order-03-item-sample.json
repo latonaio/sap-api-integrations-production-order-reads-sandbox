@@ -1,5 +1,5 @@
 {
-	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-production-order-reads/SAP_API_Caller/caller.go#L60",
+	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-production-order-reads/SAP_API_Caller/caller.go#L67",
 	"function": "sap-api-integrations-production-order-reads/SAP_API_Caller.(*SAPAPICaller).General",
 	"level": "INFO",
 	"message": {
@@ -27,5 +27,5 @@
 		"MfgOrderItemGoodsReceiptQty": "0",
 		"MfgOrderItemActualDeviationQty": "0"
 	},
-	"time": "2021-12-10T11:28:39.52453+09:00"
+	"time": "2021-12-28T15:38:57.623764+09:00"
 }

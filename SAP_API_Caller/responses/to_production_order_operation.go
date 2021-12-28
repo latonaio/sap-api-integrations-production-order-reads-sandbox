@@ -46,8 +46,6 @@ type ToProductionOrderOperation struct {
 			ErlstSchedldExecDurnInWorkdays int         `json:"ErlstSchedldExecDurnInWorkdays"`
 			OpActualExecutionDays          int         `json:"OpActualExecutionDays"`
 			OperationUnit                  string      `json:"OperationUnit"`
-			OperationUnitISOCode           string      `json:"OperationUnitISOCode"`
-			OperationUnitSAPCode           string      `json:"OperationUnitSAPCode"`
 			OpPlannedTotalQuantity         string      `json:"OpPlannedTotalQuantity"`
 			OpTotalConfirmedYieldQty       string      `json:"OpTotalConfirmedYieldQty"`
 			LastChangeDateTime             string      `json:"LastChangeDateTime"`

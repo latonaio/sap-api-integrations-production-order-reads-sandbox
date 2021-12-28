@@ -1,5 +1,5 @@
 {
-	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-production-order-reads/SAP_API_Caller/caller.go#L53",
+	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-production-order-reads/SAP_API_Caller/caller.go#L60",
 	"function": "sap-api-integrations-production-order-reads/SAP_API_Caller.(*SAPAPICaller).General",
 	"level": "INFO",
 	"message": {
@@ -48,8 +48,6 @@
 		"ComponentScrapInPercent": "0.00",
 		"OperationScrapInPercent": "0.00",
 		"BaseUnit": "PC",
-		"BaseUnitISOCode": "PCE",
-		"BaseUnitSAPCode": "ST",
 		"RequiredQuantity": "1500",
 		"WithdrawnQuantity": "0",
 		"ConfirmedAvailableQuantity": "50",
@@ -57,5 +55,5 @@
 		"Currency": "USD",
 		"WithdrawnQuantityAmount": "0.00"
 	},
-	"time": "2021-12-10T11:28:39.128586+09:00"
+	"time": "2021-12-28T15:38:57.213574+09:00"
 }

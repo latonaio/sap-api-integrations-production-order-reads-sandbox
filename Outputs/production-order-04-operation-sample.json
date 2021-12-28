@@ -1,5 +1,5 @@
 {
-	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-production-order-reads/SAP_API_Caller/caller.go#L67",
+	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-production-order-reads/SAP_API_Caller/caller.go#L74",
 	"function": "sap-api-integrations-production-order-reads/SAP_API_Caller.(*SAPAPICaller).General",
 	"level": "INFO",
 	"message": {
@@ -40,11 +40,9 @@
 		"ErlstSchedldExecDurnInWorkdays": 0,
 		"OpActualExecutionDays": 0,
 		"OperationUnit": "PC",
-		"OperationUnitISOCode": "PCE",
-		"OperationUnitSAPCode": "ST",
 		"OpPlannedTotalQuantity": "500",
 		"OpTotalConfirmedYieldQty": "0",
 		"LastChangeDateTime": "20200723125718"
 	},
-	"time": "2021-12-10T11:28:39.998287+09:00"
+	"time": "2021-12-28T15:38:58.079344+09:00"
 }

@@ -1,5 +1,5 @@
 {
-	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-production-order-reads/SAP_API_Caller/caller.go#L74",
+	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-production-order-reads/SAP_API_Caller/caller.go#L81",
 	"function": "sap-api-integrations-production-order-reads/SAP_API_Caller.(*SAPAPICaller).General",
 	"level": "INFO",
 	"message": {
@@ -9,5 +9,5 @@
 		"StatusShortName": "SETC",
 		"StatusName": "Settlement rule created"
 	},
-	"time": "2021-12-10T11:28:40.406749+09:00"
+	"time": "2021-12-28T15:38:58.614803+09:00"
 }

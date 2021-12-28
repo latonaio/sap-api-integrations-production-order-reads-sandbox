@@ -53,8 +53,6 @@ type ToProductionOrderComponent struct {
 			ComponentScrapInPercent        string `json:"ComponentScrapInPercent"`
 			OperationScrapInPercent        string `json:"OperationScrapInPercent"`
 			BaseUnit                       string `json:"BaseUnit"`
-			BaseUnitISOCode                string `json:"BaseUnitISOCode"`
-			BaseUnitSAPCode                string `json:"BaseUnitSAPCode"`
 			RequiredQuantity               string `json:"RequiredQuantity"`
 			WithdrawnQuantity              string `json:"WithdrawnQuantity"`
 			ConfirmedAvailableQuantity     string `json:"ConfirmedAvailableQuantity"`
