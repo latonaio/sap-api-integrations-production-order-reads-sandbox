@@ -25,7 +25,7 @@
 			"StatusShortName": "",
 			"StatusName": ""
 		},
-		"BillofMaterial": {
+		"Component": {
 			"BillOfMaterialItemNumber": "",
 			"Component": "",
 			"Plant": "",
@@ -46,7 +46,7 @@
 			"StorageLocation": "",
 			"GoodsMovementType": ""
 		},
-		"BillofOperations": {
+		"Operation": {
 			"OrderInternalBillOfOperations": "",
 			"OrderIntBillOfOperationsItem": {
 				"OrderIntBillOfOperationsItem": "",
@@ -68,12 +68,37 @@
 				"OpActualExecutionStartTime": "",
 				"OpActualExecutionEndDate": "",
 				"OpActualExecutionEndTime": "",
+				"ErlstSchedldExecDurnInWorkdays": null,
 				"OpActualExecutionDays": null,
 				"OperationUnit": "",
 				"OpPlannedTotalQuantity": "",
 				"OpTotalConfirmedYieldQty": "",
 				"LastChangeDateTime": ""
 			}
+		},
+		"ProductionOrderItem": {
+			"ManufacturingOrderItem": "",
+			"ManufacturingOrderCategory": "",
+			"ManufacturingOrderType": "",
+			"IsCompletelyDelivered": null,
+			"Material": "",
+			"ProductionPlant": "",
+			"Plant": "",
+			"MRPArea": "",
+			"QuantityDistributionKey": "",
+			"MaterialGoodsReceiptDuration": "",
+			"StorageLocation": "",
+			"Batch": "",
+			"InventoryUsabilityCode": "",
+			"GoodsRecipientName": "",
+			"UnloadingPointName": "",
+			"MfgOrderItemPlndDeliveryDate": "",
+			"MfgOrderItemActualDeliveryDate": "",
+			"ProductionUnit": "",
+			"MfgOrderItemPlannedTotalQty": "",
+			"MfgOrderItemPlannedScrapQty": "",
+			"MfgOrderItemGoodsReceiptQty": "",
+			"MfgOrderItemActualDeviationQty": ""
 		}
 	},
 	"api_schema": "sap.s4.beh.productionorder.v1.ProductionOrder.Created.v1",

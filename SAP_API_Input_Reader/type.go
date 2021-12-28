@@ -57,81 +57,106 @@ type SDC struct {
 	Result          bool   `json:"result"`
 	RedisKey        string `json:"redis_key"`
 	Filepath        string `json:"filepath"`
-	ManufacturingOrder struct {
-		ManufacturingOrder             string  `json:"ManufacturingOrder"`
-		ManufacturingOrderType         string  `json:"ManufacturingOrderType"`
-		Material                       string  `json:"Material"`
-		ProductionPlant                string  `json:"ProductionPlant"`
-		MfgOrderItemPlannedTotalQty    string  `json:"MfgOrderItemPlannedTotalQty"`
-		MfgOrderItemPlannedScrapQty    string  `json:"MfgOrderItemPlannedScrapQty"`
-		MfgOrderItemGoodsReceiptQty    string  `json:"MfgOrderItemGoodsReceiptQty"`
-		MfgOrderItemActualDeviationQty string  `json:"MfgOrderItemActualDeviationQty"`
-		MfgOrderItemPlndDeliveryDate   string  `json:"MfgOrderItemPlndDeliveryDate"`
-		MfgOrderItemActualDeliveryDate string  `json:"MfgOrderItemActualDeliveryDate"`
-		IsCompletelyDelivered          bool    `json:"IsCompletelyDelivered"`
-		MRPArea                        string  `json:"MRPArea"`
-		StorageLocation                string  `json:"StorageLocation"`
-		Batch                          string  `json:"Batch"`
-		ProductionUnit                 string  `json:"ProductionUnit"`
+	ProductionOrder struct {
+		ManufacturingOrder             string `json:"ManufacturingOrder"`
+		ManufacturingOrderType         string `json:"ManufacturingOrderType"`
+		Material                       string `json:"Material"`
+		ProductionPlant                string `json:"ProductionPlant"`
+		MfgOrderItemPlannedTotalQty    string `json:"MfgOrderItemPlannedTotalQty"`
+		MfgOrderItemPlannedScrapQty    string `json:"MfgOrderItemPlannedScrapQty"`
+		MfgOrderItemGoodsReceiptQty    string `json:"MfgOrderItemGoodsReceiptQty"`
+		MfgOrderItemActualDeviationQty string `json:"MfgOrderItemActualDeviationQty"`
+		MfgOrderItemPlndDeliveryDate   string `json:"MfgOrderItemPlndDeliveryDate"`
+		MfgOrderItemActualDeliveryDate string `json:"MfgOrderItemActualDeliveryDate"`
+		IsCompletelyDelivered          bool   `json:"IsCompletelyDelivered"`
+		MRPArea                        string `json:"MRPArea"`
+		StorageLocation                string `json:"StorageLocation"`
+		Batch                          string `json:"Batch"`
+		ProductionUnit                 string `json:"ProductionUnit"`
 		Status                         struct {
 			StatusCode      string `json:"StatusCode"`
 			IsUserStatus    string `json:"IsUserStatus"`
 			StatusShortName string `json:"StatusShortName"`
 			StatusName      string `json:"StatusName"`
 		} `json:"Status"`
-		BillofMaterial struct {
-			BillOfMaterialItemNumber      string      `json:"BillOfMaterialItemNumber"`
-			Component                     string      `json:"Component"`
-			Plant                         string      `json:"Plant"`
-			BaseUnit                      string      `json:"BaseUnit"`
-			RequiredQuantity              string      `json:"RequiredQuantity"`
-			MaterialCompOriginalQuantity  string      `json:"MaterialCompOriginalQuantity"`
-			Reservation                   string      `json:"Reservation"`
-			ReservationItem               string      `json:"ReservationItem"`
-			QuantityIsFixed               bool        `json:"QuantityIsFixed"`
-			ComponentScrapInPercent       string      `json:"ComponentScrapInPercent"`
-			WithdrawnQuantity             string      `json:"WithdrawnQuantity"`
-			ConfirmedAvailableQuantity    string      `json:"ConfirmedAvailableQuantity"`
-			WithdrawnQuantityAmount       string      `json:"WithdrawnQuantityAmount"`
-			OrderInternalBillOfOperations string      `json:"OrderInternalBillOfOperations"`
-			MatlCompRequirementDate       string      `json:"MatlCompRequirementDate"`
-			ReservationIsFinallyIssued    bool        `json:"ReservationIsFinallyIssued"`
-			MatlCompIsMarkedForBackflush  bool        `json:"MatlCompIsMarkedForBackflush"`
-			StorageLocation               string      `json:"StorageLocation"`
-			GoodsMovementType             string      `json:"GoodsMovementType"`
-		} `json:"BillofMaterial"`
-		BillofOperations struct {
+		Component struct {
+			BillOfMaterialItemNumber      string `json:"BillOfMaterialItemNumber"`
+			Component                     string `json:"Component"`
+			Plant                         string `json:"Plant"`
+			BaseUnit                      string `json:"BaseUnit"`
+			RequiredQuantity              string `json:"RequiredQuantity"`
+			MaterialCompOriginalQuantity  string `json:"MaterialCompOriginalQuantity"`
+			Reservation                   string `json:"Reservation"`
+			ReservationItem               string `json:"ReservationItem"`
+			QuantityIsFixed               bool   `json:"QuantityIsFixed"`
+			ComponentScrapInPercent       string `json:"ComponentScrapInPercent"`
+			WithdrawnQuantity             string `json:"WithdrawnQuantity"`
+			ConfirmedAvailableQuantity    string `json:"ConfirmedAvailableQuantity"`
+			WithdrawnQuantityAmount       string `json:"WithdrawnQuantityAmount"`
+			OrderInternalBillOfOperations string `json:"OrderInternalBillOfOperations"`
+			MatlCompRequirementDate       string `json:"MatlCompRequirementDate"`
+			ReservationIsFinallyIssued    bool   `json:"ReservationIsFinallyIssued"`
+			MatlCompIsMarkedForBackflush  bool   `json:"MatlCompIsMarkedForBackflush"`
+			StorageLocation               string `json:"StorageLocation"`
+			GoodsMovementType             string `json:"GoodsMovementType"`
+		} `json:"Component"`
+		Operation struct {
 			OrderInternalBillOfOperations string `json:"OrderInternalBillOfOperations"`
 			OrderIntBillOfOperationsItem  struct {
-				OrderIntBillOfOperationsItem  string  `json:"OrderIntBillOfOperationsItem"`
-				ManufacturingOrderSequence    string  `json:"ManufacturingOrderSequence"`
-				MfgOrderOperationText         string  `json:"MfgOrderOperationText"`
-				OperationIsReleased           string  `json:"OperationIsReleased"`
-				OperationIsConfirmed          string  `json:"OperationIsConfirmed"`
-				OperationIsPartiallyConfirmed string  `json:"OperationIsPartiallyConfirmed"`
-				OperationIsDeleted            string  `json:"OperationIsDeleted"`
-				OperationIsTechlyCompleted    string  `json:"OperationIsTechlyCompleted"`
-				OperationIsClosed             string  `json:"OperationIsClosed"`
-				ProductionPlant               string  `json:"ProductionPlant"`
-				WorkCenterInternalID          string  `json:"WorkCenterInternalID"`
-				OpErlstSchedldExecStrtDte     string  `json:"OpErlstSchedldExecStrtDte"`
-				OpErlstSchedldExecStrtTme     string  `json:"OpErlstSchedldExecStrtTme"`
-				OpErlstSchedldExecEndDte      string  `json:"OpErlstSchedldExecEndDte"`
-				OpErlstSchedldExecEndTme      string  `json:"OpErlstSchedldExecEndTme"`
-				OpActualExecutionStartDate    string  `json:"OpActualExecutionStartDate"`
-				OpActualExecutionStartTime    string  `json:"OpActualExecutionStartTime"`
-				OpActualExecutionEndDate      string  `json:"OpActualExecutionEndDate"`
-				OpActualExecutionEndTime      string  `json:"OpActualExecutionEndTime"`
-				OpActualExecutionDays         string  `json:"OpActualExecutionDays"`
-				OperationUnit                 string  `json:"OperationUnit"`
-				OpPlannedTotalQuantity        string  `json:"OpPlannedTotalQuantity"`
-				OpTotalConfirmedYieldQty      string  `json:"OpTotalConfirmedYieldQty"`
-				LastChangeDateTime            string  `json:"LastChangeDateTime"`
+				OrderIntBillOfOperationsItem  string      `json:"OrderIntBillOfOperationsItem"`
+				ManufacturingOrderSequence    string      `json:"ManufacturingOrderSequence"`
+				MfgOrderOperationText         string      `json:"MfgOrderOperationText"`
+				OperationIsReleased           string      `json:"OperationIsReleased"`
+				OperationIsConfirmed          string      `json:"OperationIsConfirmed"`
+				OperationIsPartiallyConfirmed string      `json:"OperationIsPartiallyConfirmed"`
+				OperationIsDeleted            string      `json:"OperationIsDeleted"`
+				OperationIsTechlyCompleted    string      `json:"OperationIsTechlyCompleted"`
+				OperationIsClosed             string      `json:"OperationIsClosed"`
+				ProductionPlant               string      `json:"ProductionPlant"`
+				WorkCenterInternalID          string      `json:"WorkCenterInternalID"`
+				OpErlstSchedldExecStrtDte     string      `json:"OpErlstSchedldExecStrtDte"`
+				OpErlstSchedldExecStrtTme     string      `json:"OpErlstSchedldExecStrtTme"`
+				OpErlstSchedldExecEndDte      string      `json:"OpErlstSchedldExecEndDte"`
+				OpErlstSchedldExecEndTme      string      `json:"OpErlstSchedldExecEndTme"`
+				OpActualExecutionStartDate    string      `json:"OpActualExecutionStartDate"`
+				OpActualExecutionStartTime    string      `json:"OpActualExecutionStartTime"`
+				OpActualExecutionEndDate      string      `json:"OpActualExecutionEndDate"`
+				OpActualExecutionEndTime      string      `json:"OpActualExecutionEndTime"`
+			    ErlstSchedldExecDurnInWorkdays int        `json:"ErlstSchedldExecDurnInWorkdays"`
+				OpActualExecutionDays          int        `json:"OpActualExecutionDays"`
+				OperationUnit                 string      `json:"OperationUnit"`
+				OpPlannedTotalQuantity        string      `json:"OpPlannedTotalQuantity"`
+				OpTotalConfirmedYieldQty      string      `json:"OpTotalConfirmedYieldQty"`
+				LastChangeDateTime            string      `json:"LastChangeDateTime"`
 			} `json:"OrderIntBillOfOperationsItem"`
-		} `json:"BillofOperations"`
+		} `json:"Operation"`
+		ProductionOrderItem struct {
+			ManufacturingOrderItem         string      `json:"ManufacturingOrderItem"`
+			ManufacturingOrderCategory     string      `json:"ManufacturingOrderCategory"`
+			ManufacturingOrderType         string      `json:"ManufacturingOrderType"`
+			IsCompletelyDelivered          bool        `json:"IsCompletelyDelivered"`
+			Material                       string      `json:"Material"`
+			ProductionPlant                string      `json:"ProductionPlant"`
+			Plant                          string      `json:"Plant"`
+			MRPArea                        string      `json:"MRPArea"`
+			QuantityDistributionKey        string      `json:"QuantityDistributionKey"`
+			MaterialGoodsReceiptDuration   string      `json:"MaterialGoodsReceiptDuration"`
+			StorageLocation                string      `json:"StorageLocation"`
+			Batch                          string      `json:"Batch"`
+			InventoryUsabilityCode         string      `json:"InventoryUsabilityCode"`
+			GoodsRecipientName             string      `json:"GoodsRecipientName"`
+			UnloadingPointName             string      `json:"UnloadingPointName"`
+			MfgOrderItemPlndDeliveryDate   string      `json:"MfgOrderItemPlndDeliveryDate"`
+			MfgOrderItemActualDeliveryDate string      `json:"MfgOrderItemActualDeliveryDate"`
+			ProductionUnit                 string      `json:"ProductionUnit"`
+			MfgOrderItemPlannedTotalQty    string      `json:"MfgOrderItemPlannedTotalQty"`
+			MfgOrderItemPlannedScrapQty    string      `json:"MfgOrderItemPlannedScrapQty"`
+			MfgOrderItemGoodsReceiptQty    string      `json:"MfgOrderItemGoodsReceiptQty"`
+			MfgOrderItemActualDeviationQty string      `json:"MfgOrderItemActualDeviationQty"`
+		} `json:"ProductionOrderItem"`
 	} `json:"ProductionOrder"`
-	APISchema          string `json:"api_schema"`
-	Accepter         []string `json:"accepter"`
-	ProductionOrder    string `json:"production_order"`
-	Deleted            bool   `json:"deleted"`
+	APISchema         string   `json:"api_schema"`
+	Accepter          []string `json:"accepter"`
+	ProductionOrderNo string   `json:"production_order"`
+	Deleted           bool     `json:"deleted"`
 }
