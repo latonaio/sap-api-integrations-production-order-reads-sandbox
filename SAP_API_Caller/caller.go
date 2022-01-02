@@ -52,28 +52,28 @@ func (c *SAPAPICaller) General(manufacturingOrder string) {
 	}
 	c.log.Info(generalData)
 
-	componentData, err := c.callToProductionOrderComponent(generalData[0].ToProductionOrderComponent)
+	componentData, err := c.callToComponent(generalData[0].ToComponent)
 	if err != nil {
 		c.log.Error(err)
 		return
 	}
 	c.log.Info(componentData)
 
-	itemData, err := c.callToProductionOrderItem(generalData[0].ToProductionOrderItem)
+	itemData, err := c.callToItem(generalData[0].ToItem)
 	if err != nil {
 		c.log.Error(err)
 		return
 	}
 	c.log.Info(itemData)
 
-	operationData, err := c.callToProductionOrderOperation(generalData[0].ToProductionOrderOperation)
+	operationData, err := c.callToOperation(generalData[0].ToOperation)
 	if err != nil {
 		c.log.Error(err)
 		return
 	}
 	c.log.Info(operationData)
 
-	statusData, err := c.callToProductionOrderStatus(generalData[0].ToProductionOrderStatus)
+	statusData, err := c.callToStatus(generalData[0].ToStatus)
 	if err != nil {
 		c.log.Error(err)
 		return
@@ -102,7 +102,7 @@ func (c *SAPAPICaller) callProductionOrderSrvAPIRequirementGeneral(api, manufact
 	return data, nil
 }
 
-func (c *SAPAPICaller) callToProductionOrderComponent(url string) ([]sap_api_output_formatter.ToProductionOrderComponent, error) {
+func (c *SAPAPICaller) callToComponent(url string) ([]sap_api_output_formatter.ToComponent, error) {
 	req, _ := http.NewRequest("GET", url, nil)
 	c.setHeaderAPIKeyAccept(req)
 
@@ -113,14 +113,14 @@ func (c *SAPAPICaller) callToProductionOrderComponent(url string) ([]sap_api_out
 	defer resp.Body.Close()
 
 	byteArray, _ := ioutil.ReadAll(resp.Body)
-	data, err := sap_api_output_formatter.ConvertToToProductionOrderComponent(byteArray, c.log)
+	data, err := sap_api_output_formatter.ConvertToToComponent(byteArray, c.log)
 	if err != nil {
 		return nil, xerrors.Errorf("convert error: %w", err)
 	}
 	return data, nil
 }
 
-func (c *SAPAPICaller) callToProductionOrderItem(url string) ([]sap_api_output_formatter.ToProductionOrderItem, error) {
+func (c *SAPAPICaller) callToItem(url string) ([]sap_api_output_formatter.ToItem, error) {
 	req, _ := http.NewRequest("GET", url, nil)
 	c.setHeaderAPIKeyAccept(req)
 
@@ -131,14 +131,14 @@ func (c *SAPAPICaller) callToProductionOrderItem(url string) ([]sap_api_output_f
 	defer resp.Body.Close()
 
 	byteArray, _ := ioutil.ReadAll(resp.Body)
-	data, err := sap_api_output_formatter.ConvertToToProductionOrderItem(byteArray, c.log)
+	data, err := sap_api_output_formatter.ConvertToToItem(byteArray, c.log)
 	if err != nil {
 		return nil, xerrors.Errorf("convert error: %w", err)
 	}
 	return data, nil
 }
 
-func (c *SAPAPICaller) callToProductionOrderOperation(url string) ([]sap_api_output_formatter.ToProductionOrderOperation, error) {
+func (c *SAPAPICaller) callToOperation(url string) ([]sap_api_output_formatter.ToOperation, error) {
 	req, _ := http.NewRequest("GET", url, nil)
 	c.setHeaderAPIKeyAccept(req)
 
@@ -149,14 +149,14 @@ func (c *SAPAPICaller) callToProductionOrderOperation(url string) ([]sap_api_out
 	defer resp.Body.Close()
 
 	byteArray, _ := ioutil.ReadAll(resp.Body)
-	data, err := sap_api_output_formatter.ConvertToToProductionOrderOperation(byteArray, c.log)
+	data, err := sap_api_output_formatter.ConvertToToOperation(byteArray, c.log)
 	if err != nil {
 		return nil, xerrors.Errorf("convert error: %w", err)
 	}
 	return data, nil
 }
 
-func (c *SAPAPICaller) callToProductionOrderStatus(url string) ([]sap_api_output_formatter.ToProductionOrderStatus, error) {
+func (c *SAPAPICaller) callToStatus(url string) ([]sap_api_output_formatter.ToStatus, error) {
 	req, _ := http.NewRequest("GET", url, nil)
 	c.setHeaderAPIKeyAccept(req)
 
@@ -167,7 +167,7 @@ func (c *SAPAPICaller) callToProductionOrderStatus(url string) ([]sap_api_output
 	defer resp.Body.Close()
 
 	byteArray, _ := ioutil.ReadAll(resp.Body)
-	data, err := sap_api_output_formatter.ConvertToToProductionOrderStatus(byteArray, c.log)
+	data, err := sap_api_output_formatter.ConvertToToStatus(byteArray, c.log)
 	if err != nil {
 		return nil, xerrors.Errorf("convert error: %w", err)
 	}

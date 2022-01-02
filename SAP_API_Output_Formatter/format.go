@@ -85,22 +85,22 @@ func ConvertToGeneral(raw []byte, l *logger.Logger) ([]General, error) {
 			MfgOrderConfirmedYieldQty:     data.MfgOrderConfirmedYieldQty,
 			WBSElementExternalID:          data.WBSElementExternalID,
 			OrderLongText:                 data.OrderLongText,
-			ToProductionOrderComponent:    data.ToProductionOrderComponent.Deferred.URI,
-			ToProductionOrderItem:         data.ToProductionOrderItem.Deferred.URI,
-			ToProductionOrderOperation:    data.ToProductionOrderOperation.Deferred.URI,
-			ToProductionOrderStatus:       data.ToProductionOrderStatus.Deferred.URI,
+			ToComponent:                   data.ToComponent.Deferred.URI,
+			ToItem:                        data.ToItem.Deferred.URI,
+			ToOperation:                   data.ToOperation.Deferred.URI,
+			ToStatus:                      data.ToStatus.Deferred.URI,
 		})
 	}
 
 	return general, nil
 }
 
-func ConvertToToProductionOrderComponent(raw []byte, l *logger.Logger) ([]ToProductionOrderComponent, error) {
-	pm := &responses.ToProductionOrderComponent{}
+func ConvertToToComponent(raw []byte, l *logger.Logger) ([]ToComponent, error) {
+	pm := &responses.ToComponent{}
 
 	err := json.Unmarshal(raw, pm)
 	if err != nil {
-		return nil, xerrors.Errorf("cannot convert to ToProductionOrderComponent. unmarshal error: %w", err)
+		return nil, xerrors.Errorf("cannot convert to ToComponent. unmarshal error: %w", err)
 	}
 	if len(pm.D.Results) == 0 {
 		return nil, xerrors.New("Result data is not exist")
@@ -109,10 +109,10 @@ func ConvertToToProductionOrderComponent(raw []byte, l *logger.Logger) ([]ToProd
 		l.Info("raw data has too many Results. %d Results exist. show the first 10 of Results array", len(pm.D.Results))
 	}
 
-	toProductionOrderComponent := make([]ToProductionOrderComponent, 0, 10)
+	toComponent := make([]ToComponent, 0, 10)
 	for i := 0; i < 10 && i < len(pm.D.Results); i++ {
 		data := pm.D.Results[i]
-		toProductionOrderComponent = append(toProductionOrderComponent, ToProductionOrderComponent{
+		toComponent = append(toComponent, ToComponent{
 			Reservation:                    data.Reservation,
 			ReservationItem:                data.ReservationItem,
 			MaterialGroup:                  data.MaterialGroup,
@@ -167,15 +167,15 @@ func ConvertToToProductionOrderComponent(raw []byte, l *logger.Logger) ([]ToProd
 		})
 	}
 
-	return toProductionOrderComponent, nil
+	return toComponent, nil
 }
 
-func ConvertToToProductionOrderItem(raw []byte, l *logger.Logger) ([]ToProductionOrderItem, error) {
-	pm := &responses.ToProductionOrderItem{}
+func ConvertToToItem(raw []byte, l *logger.Logger) ([]ToItem, error) {
+	pm := &responses.ToItem{}
 
 	err := json.Unmarshal(raw, pm)
 	if err != nil {
-		return nil, xerrors.Errorf("cannot convert to ToProductionOrderItem. unmarshal error: %w", err)
+		return nil, xerrors.Errorf("cannot convert to ToItem. unmarshal error: %w", err)
 	}
 	if len(pm.D.Results) == 0 {
 		return nil, xerrors.New("Result data is not exist")
@@ -184,10 +184,10 @@ func ConvertToToProductionOrderItem(raw []byte, l *logger.Logger) ([]ToProductio
 		l.Info("raw data has too many Results. %d Results exist. show the first 10 of Results array", len(pm.D.Results))
 	}
 
-	toProductionOrderItem := make([]ToProductionOrderItem, 0, 10)
+	toItem := make([]ToItem, 0, 10)
 	for i := 0; i < 10 && i < len(pm.D.Results); i++ {
 		data := pm.D.Results[i]
-		toProductionOrderItem = append(toProductionOrderItem, ToProductionOrderItem{
+		toItem = append(toItem, ToItem{
 			ManufacturingOrder:             data.ManufacturingOrder,
 			ManufacturingOrderItem:         data.ManufacturingOrderItem,
 			ManufacturingOrderCategory:     data.ManufacturingOrderCategory,
@@ -214,15 +214,15 @@ func ConvertToToProductionOrderItem(raw []byte, l *logger.Logger) ([]ToProductio
 		})
 	}
 
-	return toProductionOrderItem, nil
+	return toItem, nil
 }
 
-func ConvertToToProductionOrderOperation(raw []byte, l *logger.Logger) ([]ToProductionOrderOperation, error) {
-	pm := &responses.ToProductionOrderOperation{}
+func ConvertToToOperation(raw []byte, l *logger.Logger) ([]ToOperation, error) {
+	pm := &responses.ToOperation{}
 
 	err := json.Unmarshal(raw, pm)
 	if err != nil {
-		return nil, xerrors.Errorf("cannot convert to ToProductionOrderOperation. unmarshal error: %w", err)
+		return nil, xerrors.Errorf("cannot convert to ToOperation. unmarshal error: %w", err)
 	}
 	if len(pm.D.Results) == 0 {
 		return nil, xerrors.New("Result data is not exist")
@@ -231,10 +231,10 @@ func ConvertToToProductionOrderOperation(raw []byte, l *logger.Logger) ([]ToProd
 		l.Info("raw data has too many Results. %d Results exist. show the first 10 of Results array", len(pm.D.Results))
 	}
 
-	toProductionOrderOperation := make([]ToProductionOrderOperation, 0, 10)
+	toOperation := make([]ToOperation, 0, 10)
 	for i := 0; i < 10 && i < len(pm.D.Results); i++ {
 		data := pm.D.Results[i]
-		toProductionOrderOperation = append(toProductionOrderOperation, ToProductionOrderOperation{
+		toOperation = append(toOperation, ToOperation{
 			OrderInternalBillOfOperations:  data.OrderInternalBillOfOperations,
 			OrderIntBillOfOperationsItem:   data.OrderIntBillOfOperationsItem,
 			ManufacturingOrder:             data.ManufacturingOrder,
@@ -278,15 +278,15 @@ func ConvertToToProductionOrderOperation(raw []byte, l *logger.Logger) ([]ToProd
 		})
 	}
 
-	return toProductionOrderOperation, nil
+	return toOperation, nil
 }
 
-func ConvertToToProductionOrderStatus(raw []byte, l *logger.Logger) ([]ToProductionOrderStatus, error) {
-	pm := &responses.ToProductionOrderStatus{}
+func ConvertToToStatus(raw []byte, l *logger.Logger) ([]ToStatus, error) {
+	pm := &responses.ToStatus{}
 
 	err := json.Unmarshal(raw, pm)
 	if err != nil {
-		return nil, xerrors.Errorf("cannot convert to ToProductionOrderStatus. unmarshal error: %w", err)
+		return nil, xerrors.Errorf("cannot convert to ToStatus. unmarshal error: %w", err)
 	}
 	if len(pm.D.Results) == 0 {
 		return nil, xerrors.New("Result data is not exist")
@@ -295,10 +295,10 @@ func ConvertToToProductionOrderStatus(raw []byte, l *logger.Logger) ([]ToProduct
 		l.Info("raw data has too many Results. %d Results exist. show the first 10 of Results array", len(pm.D.Results))
 	}
 
-	toProductionOrderStatus := make([]ToProductionOrderStatus, 0, 10)
+	toStatus := make([]ToStatus, 0, 10)
 	for i := 0; i < 10 && i < len(pm.D.Results); i++ {
 		data := pm.D.Results[i]
-		toProductionOrderStatus = append(toProductionOrderStatus, ToProductionOrderStatus{
+		toStatus = append(toStatus, ToStatus{
 			ManufacturingOrder: data.ManufacturingOrder,
 			StatusCode:         data.StatusCode,
 			IsUserStatus:       data.IsUserStatus,
@@ -307,5 +307,5 @@ func ConvertToToProductionOrderStatus(raw []byte, l *logger.Logger) ([]ToProduct
 		})
 	}
 
-	return toProductionOrderStatus, nil
+	return toStatus, nil
 }

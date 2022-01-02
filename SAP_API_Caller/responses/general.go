@@ -68,22 +68,22 @@ type General struct {
 			MfgOrderConfirmedYieldQty     string `json:"MfgOrderConfirmedYieldQty"`
 			WBSElementExternalID          string `json:"WBSElementExternalID"`
 			OrderLongText                 string `json:"OrderLongText"`
-			ToProductionOrderComponent    struct {
+			ToComponent    struct {
 				Deferred struct {
 					URI string `json:"uri"`
 				} `json:"__deferred"`
 			} `json:"to_ProductionOrderComponent"`
-			ToProductionOrderItem struct {
+			ToItem struct {
 				Deferred struct {
 					URI string `json:"uri"`
 				} `json:"__deferred"`
 			} `json:"to_ProductionOrderItem"`
-			ToProductionOrderOperation struct {
+			ToOperation struct {
 				Deferred struct {
 					URI string `json:"uri"`
 				} `json:"__deferred"`
 			} `json:"to_ProductionOrderOperation"`
-			ToProductionOrderStatus struct {
+			ToStatus struct {
 				Deferred struct {
 					URI string `json:"uri"`
 				} `json:"__deferred"`

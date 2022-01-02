@@ -1,6 +1,6 @@
 package responses
 
-type ToProductionOrderOperation struct {
+type ToOperation struct {
 	D struct {
 		Results []struct {
 			Metadata struct {

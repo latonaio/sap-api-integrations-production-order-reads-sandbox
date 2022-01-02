@@ -70,13 +70,13 @@ type General struct {
 			MfgOrderConfirmedYieldQty     string `json:"MfgOrderConfirmedYieldQty"`
 			WBSElementExternalID          string `json:"WBSElementExternalID"`
 			OrderLongText                 string `json:"OrderLongText"`
-			ToProductionOrderComponent    string `json:"to_ProductionOrderComponent"`
-			ToProductionOrderItem         string `json:"to_ProductionOrderItem"`
-			ToProductionOrderOperation    string `json:"to_ProductionOrderOperation"`
-			ToProductionOrderStatus       string `json:"to_ProductionOrderStatus"`
+			ToComponent                   string `json:"to_ProductionOrderComponent"`
+			ToItem                        string `json:"to_ProductionOrderItem"`
+			ToOperation                   string `json:"to_ProductionOrderOperation"`
+			ToStatus                      string `json:"to_ProductionOrderStatus"`
 }
 
-type ToProductionOrderComponent struct {
+type ToComponent struct {
 			ManufacturingOrder             string `json:"ManufacturingOrder"`
 			ManufacturingOrderSequence     string `json:"ManufacturingOrderSequence"`
 			ManufacturingOrderOperation    string `json:"ManufacturingOrderOperation"`
@@ -130,7 +130,7 @@ type ToProductionOrderComponent struct {
 			WithdrawnQuantityAmount        string `json:"WithdrawnQuantityAmount"`
 }
 
-type ToProductionOrderItem struct {
+type ToItem struct {
 			ManufacturingOrder             string      `json:"ManufacturingOrder"`
 			ManufacturingOrderItem         string      `json:"ManufacturingOrderItem"`
 			ManufacturingOrderCategory     string      `json:"ManufacturingOrderCategory"`
@@ -156,7 +156,7 @@ type ToProductionOrderItem struct {
 			MfgOrderItemActualDeviationQty string      `json:"MfgOrderItemActualDeviationQty"`
 }
 
-type ToProductionOrderOperation struct {
+type ToOperation struct {
 			OrderInternalBillOfOperations  string      `json:"OrderInternalBillOfOperations"`
 			OrderIntBillOfOperationsItem   string      `json:"OrderIntBillOfOperationsItem"`
 			ManufacturingOrder             string      `json:"ManufacturingOrder"`
@@ -199,7 +199,7 @@ type ToProductionOrderOperation struct {
 			LastChangeDateTime             string      `json:"LastChangeDateTime"`
 }
 
-type ToProductionOrderStatus struct {
+type ToStatus struct {
 			ManufacturingOrder string `json:"ManufacturingOrder"`
 			StatusCode         string `json:"StatusCode"`
 			IsUserStatus       bool   `json:"IsUserStatus"`
