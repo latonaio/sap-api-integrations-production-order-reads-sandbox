@@ -132,8 +132,6 @@ type SDC struct {
 			MaterialGroup                  string      `json:"MaterialGroup"`
 			Material                       string      `json:"Material"`
 			Plant                          string      `json:"Plant"`
-			ManufacturingOrderCategory     string      `json:"ManufacturingOrderCategory"`
-			ManufacturingOrderType         string      `json:"ManufacturingOrderType"`
 			ProductionPlant                string      `json:"ProductionPlant"`
 			MatlCompRequirementDate        string      `json:"MatlCompRequirementDate"`
 			MatlCompRequirementTime        string      `json:"MatlCompRequirementTime"`
@@ -184,8 +182,6 @@ type SDC struct {
 			OrderInternalBillOfOperations  string      `json:"OrderInternalBillOfOperations"`
 			OrderIntBillOfOperationsItem   string      `json:"OrderIntBillOfOperationsItem"`
 			MfgOrderSequenceText           string      `json:"MfgOrderSequenceText"`
-			ManufacturingOrderCategory     string      `json:"ManufacturingOrderCategory"`
-			ManufacturingOrderType         string      `json:"ManufacturingOrderType"`
 			MfgOrderOperationText          string      `json:"MfgOrderOperationText"`
 			OperationIsCreated             string      `json:"OperationIsCreated"`
 			OperationIsReleased            string      `json:"OperationIsReleased"`
@@ -220,8 +216,6 @@ type SDC struct {
 		} `json:"Operation"`
 		ProductionOrderItem struct {
 			ManufacturingOrderItem         string      `json:"ManufacturingOrderItem"`
-			ManufacturingOrderCategory     string      `json:"ManufacturingOrderCategory"`
-			ManufacturingOrderType         string      `json:"ManufacturingOrderType"`
 			IsCompletelyDelivered          bool        `json:"IsCompletelyDelivered"`
 			Material                       string      `json:"Material"`
 			ProductionPlant                string      `json:"ProductionPlant"`
